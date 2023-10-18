@@ -1,0 +1,19 @@
+{
+    "name": "shotwn/lidio-api",
+    "description": "Unofficial Lidio API Bindings for Laravel",
+    "type": "library",
+    "license": "AGPL-3.0-only",
+    "autoload": {
+        "psr-4": {
+            "Shotwn\\LidioApi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Fikret Anıl Haksever",
+            "email": "me@anilhaksever.com",
+            "homepage": "https://anilhaksever.com"
+        }
+    ],
+    "require": {}
+}
