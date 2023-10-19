@@ -122,6 +122,13 @@ class LidioWebhookController extends Controller
    This library is not affiliated with Lidio in any way.
 ```
 
+## Required .env Fields
+- `LIDIO_API_URL` - Lidio API Root URL, for initial tests use "https://test.lidio.com/api"
+- `LIDIO_AUTHORIZATION_KEY` - Receive as a customer
+- `LIDIO_MERCHANT_CODE` - Receive as a customer
+- `LIDIO_API_PASSWORD` - Receive as a customer
+- `LIDIO_MERCHANT_KEY` - Receive as a customer
+
 ## Class: PaymentLinkBuilder
 
 This class provides a fluent interface for building payment links using the Lidio API. It allows you to set various parameters for the payment link, such as the order ID, the payment amount, and the customer's email and phone number.
