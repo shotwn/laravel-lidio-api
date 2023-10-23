@@ -42,6 +42,13 @@ class LidioAPIPaymentNotification
     private bool $processedAmountVerified = false;
     private bool $merchantCustomFieldVerified = false;
 
+    // This acts as a object cache
+    // If you need to store something in this object, use this array.
+    // For example you can store the invoice ID here after verifying it
+    // So later on you can access it, for db operations etc.
+    // * This can also be used to override values in toArray()
+    public array $customParameters = [];
+
     public function __construct(LidioAPI $lidioAPI, Request $request)
     {
         $paymentNotificationBody = $request->all();
@@ -234,9 +241,9 @@ class LidioAPIPaymentNotification
     /**
      * Returns false if payment was successful, otherwise returns the paymentResult (error message)
      */
-    public function failed(): bool|string
+    public function failed(): bool|null|string
     {
-        return $this->successful() ? false :  $this->paymentResult;
+        return $this->successful() ? null :  $this->paymentResult;
     }
 
     /**
@@ -260,7 +267,7 @@ class LidioAPIPaymentNotification
      * merchantCustomFieldVerified: bool,
      * }
      */
-    public function toArray(array $skipKeys = []): array
+    public function toArray(array $skipKeys = [], bool $overwriteUsingCustomParameters = false): array
     {
         $toReturn = [
             'action' => $this->action,
@@ -279,6 +286,13 @@ class LidioAPIPaymentNotification
             'processedAmountVerified' => $this->processedAmountVerified,
             'merchantCustomFieldVerified' => $this->merchantCustomFieldVerified,
         ];
+
+        // Overwrite values using custom parameters
+        if ($overwriteUsingCustomParameters) {
+            foreach ($this->customParameters as $key => $value) {
+                $toReturn[$key] = $value;
+            }
+        }
 
         // Remove the keys that are in $skipKeys
         foreach ($skipKeys as $key) {
