@@ -1,3 +1,12 @@
+# WARNING
+Do not use unless you review the entire code yourself.
+
+***Lidio cancelled my account without any warning or reason.*** 
+
+So this wrapper never had chance to be used in live service.
+
+Keep this in mind when you use this wrapper or Lidio as whole.
+
 # laravel-lidio-api
 Unofficial - **HIGHLY Experimental** Bindings for Lidio's Pay with Link API Interface
 
